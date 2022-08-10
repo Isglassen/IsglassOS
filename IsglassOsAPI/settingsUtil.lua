@@ -8,24 +8,31 @@ local function contains(list, value)
     return false
 end
 
-local function resolveSettingPath(path)
+local function resolveSettingPath(path, debug)
+    if debug == nil then debug = false end
     expect(1, path, "string")
     local truePath = "IsglassOsData/Settings"
     local found = false
     for dir in path:gmatch("[^/]+") do
+        if debug then print("Finding "..dir) end
         if found then
             error("Already found setting, but path keeps going")
         end
         local paths = fs.list(truePath)
         for _, v in pairs(paths) do
             local tempPath = fs.combine(truePath, v)
+            if debug then print("Looking at "..tempPath) end
             if fs.isDir(tempPath) then
+                if debug then print(tempPath.." is a directory") end
                 if util.ReadData(fs.combine(tempPath, "index.txt")).name == dir then
+                    if debug then print(tempPath.." matches") end
                     truePath = tempPath
                     break
                 end
             else
+                if debug then print(tempPath.." is a file") end
                 if util.ReadData(tempPath).name == dir then
+                    if debug then print(tempPath.." matches") end
                     truePath = tempPath
                     found = true
                     break
@@ -42,7 +49,7 @@ end
 function FixSettings(settingsList)
     expect(1, settingsList, "table")
     for settingURI, settingInfo in pairs(settingsList) do
-        local ok, settingPath = pcall(resolveSettingPath, settingURI)
+        local ok, settingPath = pcall(resolveSettingPath, settingURI, true)
         if ok then
             local setting = util.ReadData(settingPath)
             if not contains(setting.valid, type(setting.value)) then
