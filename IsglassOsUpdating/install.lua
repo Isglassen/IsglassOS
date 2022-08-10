@@ -26,5 +26,3 @@ if branch ~= nil then
     versionFile.write(textutils.serialize(version))
     versionFile.close()
 end
-
-os.reboot()
