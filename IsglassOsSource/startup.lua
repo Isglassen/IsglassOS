@@ -2,6 +2,7 @@
 
 sleep(1)
 
+os.loadAPI("IsglassOsAPI/base64.lua")
 os.loadAPI("IsglassOsAPI/util.lua")
 os.loadAPI("IsglassOsAPI/settingsUtil.lua")
 util.W, util.H = term.getSize()
