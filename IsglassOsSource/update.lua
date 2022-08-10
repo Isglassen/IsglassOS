@@ -75,8 +75,11 @@ if not done then
     end
 end
 
-term.write("Updater has finished! Press any key to continue")
-os.pullEvent("key")
+util.SetTextColor(term, colors.lime)
+term.write("Updater has finished!")
+util.SetTextColor(term, colors.white)
+
+sleep(1)
 
 if done then
     os.reboot()
