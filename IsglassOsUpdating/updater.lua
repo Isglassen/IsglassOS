@@ -21,6 +21,7 @@ deleteCopy("IsglassOsAPI")
 --IsglassOsData
 deleteCopy("IsglassOsData/Programs")
 tryCopy("IsglassOsData/Settings")
+deleteCopy("IsglassOsData/Settings/backup.txt")
 deleteCopy("IsglassOsData/changelog.txt")
 tryCopy("IsglassOsData/quick.txt")
 deleteCopy("IsglassOsData/splash.img")
