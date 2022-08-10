@@ -52,7 +52,12 @@ function FixSettings(settingsList)
         local ok, settingPath = pcall(resolveSettingPath, settingURI, true)
         if ok then
             local setting = util.ReadData(settingPath)
-            if not contains(setting.valid, type(setting.value)) then
+            local okContain, containResult = pcall(contains, setting.valid, type(setting.value))
+            if not okContain then
+                print("Invalid setting "..settingURI..". Set to "..tostring(settingInfo.value))
+                util.WriteData(settingPath, settingInfo)
+            elseif not containResult then
+                print("Invalid setting "..settingURI..". Set to "..tostring(settingInfo.value))
                 settingsUtil.Setting(settingPath, setting.default)
             end
         else
