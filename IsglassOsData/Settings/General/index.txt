@@ -1,0 +1,4 @@
+{
+    name = "General",
+    description = "General settings that don't fit into other categories"
+}

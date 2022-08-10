@@ -1,0 +1,4 @@
+{
+    name = "Console",
+    description = "Settings for how the IsglassOS console should behave"
+}

@@ -1,0 +1,20 @@
+{
+    ["General/24h Clock"] = {
+        name = "24h Clock",
+        description = "Use 24 hour time",
+        value = true,
+        valid = {
+            "boolean"
+        },
+        default = true
+    },
+    ["System/Console/Debug Mode"] = {
+        name = "Debug Mode",
+        description = "Print debug information and detailed error messages in the console",
+        value = false,
+        valid = {
+            "boolean"
+        },
+        default = false
+    }
+}

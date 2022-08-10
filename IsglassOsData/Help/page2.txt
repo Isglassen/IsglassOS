@@ -1,0 +1,6 @@
+* The util API has some nice functions:")
+  * ReadData(path) - returns textutils.unserialize() of the content at the specified path
+  * WriteData(path, data) - writes textutils.serialize(data) to the specified path
+  * ReadFile(path) - returns the content at the specified path
+  * WriteFile(path, data) - writes data to the specified path
+  * SetTextColor(terminal, color) - sets the text color of the terminal if it supports color

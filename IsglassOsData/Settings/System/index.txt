@@ -1,0 +1,4 @@
+{
+    name = "System",
+    description = "Settings for how the system should behave"
+}

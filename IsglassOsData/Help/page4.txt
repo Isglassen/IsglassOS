@@ -1,0 +1,9 @@
+* IsglassOS version format:
+  {
+    major = num,
+    update = num,
+    patch = num,
+    branch = string
+  }
+  String representation: <major>.<update>.<patch><branch> 
+  All published versions will use an empty string for branch, and most developer versions use "dev"

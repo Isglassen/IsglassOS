@@ -1,0 +1,6 @@
+{
+    major = 1,
+    update = 0,
+    patch = 0,
+    branch = "dev"
+}

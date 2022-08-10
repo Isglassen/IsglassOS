@@ -1,0 +1,6 @@
+* The util API has some nice functions:")
+  * SetBackgroundColor(terminal, color) - sets the background color of the terminal if it supports color
+  * VersionCompare(oldVersion, newVersion) - return oldVersion < newVersion, where both versions are of the IsglassOS version format
+  * VersionString(version) - returns a string representation of the IsglassOS version")
+  * CenterWrite(terminal, y, s) - terminal.write(s) at y, placing the text in the middle (rounded down)
+  * LeftWrite(terminal, x, y, s) - terminal.write(s) at y so that the last character is at x

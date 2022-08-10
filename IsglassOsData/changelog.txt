@@ -1,0 +1,3 @@
+Plans:
+* Autocomplete in console
+* File system (+custom programs)
