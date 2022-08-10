@@ -2,5 +2,5 @@
     major = 0,
     update = 2,
     patch = 0,
-    branch = "dev"
+    branch = ""
 }
