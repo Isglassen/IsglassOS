@@ -44,7 +44,7 @@ function FixSettings(settingsList)
     for settingURI, settingInfo in pairs(settingsList) do
         local ok, settingPath = pcall(resolveSettingPath, settingURI)
         if ok then
-            local setting = util.ReadData(result)
+            local setting = util.ReadData(settingPath)
             if not contains(setting.valid, type(setting.value)) then
                 settingsUtil.Setting(settingPath, setting.default)
             end
