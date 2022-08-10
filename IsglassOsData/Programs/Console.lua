@@ -4,14 +4,12 @@ local OScommands = {
     commands = {
         exitOS = {
             name = "exitOS",
-            use = "exitOS <password>",
+            use = "exitOS",
             short = "Exit IsglassOS",
-            help = "Exit IsglassOS and open the computer console.\nThis requires the developer password so that you can't modify the OS\ndev versions don't need a password",
+            help = "Exit IsglassOS and open the computer console. Use the command startup or reboot to restart IsglassOS",
             code = function (OScommands, args)
-                if args[1] == "SuperSecretPassword022843" or util.ReadData("IsglassOsData/version.txt").branch == "dev" then
-                    os.queueEvent("exitOS")
-                    return true
-                end
+                os.queueEvent("exitOS")
+                return true
             end
         },
         uninstall = {
