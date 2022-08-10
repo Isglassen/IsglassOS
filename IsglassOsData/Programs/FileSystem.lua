@@ -86,7 +86,10 @@ local function run(path)
     if fs.isDir(fs.combine(path, getSelected())) then
         return false, "Can't run a directory", colors.red
     else
-        shell.switchTab(shell.openTab(path))
+        term.clear()
+        print("Arguments:")
+        local arguments = read()
+        shell.switchTab(shell.openTab(path.." "..arguments))
         return true
     end
 end

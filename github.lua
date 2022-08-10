@@ -1,6 +1,7 @@
-local tArgs, gUser, gRepo, gPath, gBranch = {...}, nil, nil, "", "master"
+os.loadAPI("IsglassOsAPI/base64.lua")
+local tArgs, gUser, gAuth, gRepo, gPath, gBranch = {...}, nil, nil, nil, "", "master"
 local usage = [[
- github <user> <repo> [path] [remote path] [branch]
+ github <user> <repo> [name:token] [path] [remote path] [branch]
  Remote path defaults to the root of the repo.
  Path defaults to the download folder.
  Branch defaults to master.
@@ -62,7 +63,7 @@ function downloadFile( path, url, name )
 	writeCenter("Downloading File: "..name)
 	dirPath = path:gmatch('([%w%_%.% %-%+%,%;%:%*%#%=%/]+)/'..name..'$')()
 	if dirPath ~= nil and not fs.isDir(dirPath) then fs.makeDir(dirPath) end
-	local content = http.get(url)
+	local content = http.get(url, gAuth)
 	local file = fs.open(path,"w")
 	file.write(content.readAll())
 	file.close()
@@ -71,7 +72,12 @@ end
 -- Get Directory Contents
 function getGithubContents( path )
 	local pType, pPath, pName, checkPath = {}, {}, {}, {}
-	local response = http.get("https://api.github.com/repos/"..gUser.."/"..gRepo.."/contents/"..path.."/?ref="..gBranch)
+	local response = ""
+	if path ~= "" then
+		response = http.get("https://api.github.com/repos/"..gUser.."/"..gRepo.."/contents/"..path.."/?ref="..gBranch, gAuth)
+	else
+		response = http.get("https://api.github.com/repos/"..gUser.."/"..gRepo.."/contents/?ref="..gBranch, gAuth)
+	end
 	if response then
 		response = response.readAll()
 		if response ~= nil then
@@ -101,7 +107,7 @@ function downloadManager( path )
 	local fType, fPath, fName = getGithubContents( path )
 	for i,data in pairs(fType) do
 		if data == "file" then
-			checkPath = http.get("https://raw.github.com/"..gUser.."/"..gRepo.."/"..gBranch.."/"..fPath[i])
+			checkPath = http.get("https://raw.github.com/"..gUser.."/"..gRepo.."/"..gBranch.."/"..fPath[i], gAuth)
 			if checkPath == nil then
 				
 				fPath[i] = fPath[i].."/"..fName[i]
@@ -140,15 +146,20 @@ function main( path )
 end
 
 -- Parse User Input
-function parseInput( user, repo , dldir, path, branch )
+function parseInput( user, repo, auth, dldir, path, branch )
 	if path == nil then path = "" end
 	if branch ~= nil then gBranch = branch end
 	if repo == nil then printUsage()
 	else
 		gUser = user
 		gRepo = repo
+		if auth == nil then
+			gAuth = {}
+		else
+			gAuth = {["Authorization"]="Basic "..base64.encode(auth)}
+		end
 		if dldir ~= nil then gPath = dldir end
-		main( path ) 
+		main( path )
 	end
 end
 
@@ -158,8 +169,8 @@ if not http then
 	term.clear()
 	term.setCursorPos(1,1)
 else
-	for i=1, 5, 1 do
+	for i=1, 6, 1 do
 		if tArgs[i] == "." then tArgs[i] = nil end
 	end	
-	parseInput( tArgs[1], tArgs[2], tArgs[3], tArgs[4], tArgs[5] )
+	parseInput( tArgs[1], tArgs[2], tArgs[3], tArgs[4], tArgs[5], tArgs[6] )
 end

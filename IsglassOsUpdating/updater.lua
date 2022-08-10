@@ -28,6 +28,7 @@ deleteCopy("IsglassOsData/version.txt")
 
 --Fix Broken Settings
 os.loadAPI("IsglassOsAPI/settingsUtil.lua")
+os.loadAPI("IsglassOsAPI/util.lua")
 settingsUtil.FixSettings(util.ReadData("IsglassOsData/Settings/backup.txt"))
 
 --IsglassOsFiles
