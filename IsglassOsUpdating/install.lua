@@ -9,9 +9,15 @@ local function deleteCopy(path)
     fs.copy(ownPath.."/"..path, path)
 end
 
+local function tryCopy(path)
+    if not fs.exists(path) then
+        fs.copy(ownPath.."/"..path, path)
+    end
+end
+
 deleteCopy("IsglassOsAPI")
 deleteCopy("IsglassOsData")
-deleteCopy("IsglassOsFiles")
+tryCopy("IsglassOsFiles")
 deleteCopy("IsglassOsSource")
 deleteCopy("IsglassOsUpdating")
 deleteCopy("startup.lua")

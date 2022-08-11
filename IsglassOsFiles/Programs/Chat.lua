@@ -1,6 +1,6 @@
 term.clear()
 term.setCursorPos(1,1)
-print("Credits to TomtarSkogar1")
+print("Until we have our own Chat software, a version of the TomtarSkogar chat software will be used")
 sleep(1)
 local monitor = peripheral.find("monitor")
 if monitor ~= nil then
