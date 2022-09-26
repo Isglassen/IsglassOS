@@ -1,3 +1,6 @@
+package.path = package.path..";/IsglassOsAPI/?.lua"
+local util = require("util")
+
 --Check current IsglassOS version
 local version = util.ReadData("IsglassOsData/version.txt")
 

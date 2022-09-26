@@ -1,3 +1,6 @@
+package.path = package.path..";/IsglassOsAPI/?.lua"
+local util = require("util")
+
 local pages = {
     {
         number = "1",

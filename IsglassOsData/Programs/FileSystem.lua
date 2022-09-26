@@ -1,3 +1,6 @@
+package.path = package.path..";/IsglassOsAPI/?.lua"
+local util = require("util")
+
 --[[
 Functions:
 X - Cut
@@ -148,14 +151,14 @@ local function drawMain()
     term.setCursorPos(1,1)
     term.write(path.."/")
     term.setCursorPos(1,3)
-    for i = 1, util.W, 1 do
+    for i = 1, util.W(term), 1 do
         term.write("-")
     end
 
     --Display files to the left
     local highlight = getSelected()
 
-    for i = 4, util.H-3, 1 do
+    for i = 4, util.H(term)-3, 1 do
         term.setCursorPos(1,i)
         local fileName = ""
         local readIndex = fileScroll + i - 4
@@ -178,27 +181,27 @@ local function drawMain()
 
     --Display tutorial to the right
     util.SetTextColor(term, colors.lime)
-    util.LeftWrite(term, util.W, 4, "Up/W - Select File above")
-    util.LeftWrite(term, util.W, 5, "Down/S - Select File below")
-    util.LeftWrite(term, util.W, 6, "Enter - Open Directory")
-    util.LeftWrite(term, util.W, 7, "X - Cut")
-    util.LeftWrite(term, util.W, 8, "C - Copy")
-    util.LeftWrite(term, util.W, 9, "V - Paste")
-    util.LeftWrite(term, util.W, 10, "D - Delete")
-    util.LeftWrite(term, util.W, 11, "E - Edit")
-    util.LeftWrite(term, util.W, 12, "O - Run as lua")
-    util.LeftWrite(term, util.W, 13, "N - New file or dir")
-    util.LeftWrite(term, util.W, 14, "Backspace - Quit")
-    util.LeftWrite(term, util.W, 15, "../ is the previous directory")
+    util.LeftWrite(term, util.W(term), 4, "Up/W - Select File above")
+    util.LeftWrite(term, util.W(term), 5, "Down/S - Select File below")
+    util.LeftWrite(term, util.W(term), 6, "Enter - Open Directory")
+    util.LeftWrite(term, util.W(term), 7, "X - Cut")
+    util.LeftWrite(term, util.W(term), 8, "C - Copy")
+    util.LeftWrite(term, util.W(term), 9, "V - Paste")
+    util.LeftWrite(term, util.W(term), 10, "D - Delete")
+    util.LeftWrite(term, util.W(term), 11, "E - Edit")
+    util.LeftWrite(term, util.W(term), 12, "O - Run as lua")
+    util.LeftWrite(term, util.W(term), 13, "N - New file or dir")
+    util.LeftWrite(term, util.W(term), 14, "Backspace - Quit")
+    util.LeftWrite(term, util.W(term), 15, "../ is the previous directory")
 
     --Display actions to the bottomLeft
     util.SetTextColor(term, colors.white)
-    term.setCursorPos(1,util.H-2)
-    for i = 1, util.W, 1 do
+    term.setCursorPos(1,util.H(term)-2)
+    for i = 1, util.W(term), 1 do
         term.write("-")
     end
 
-    term.setCursorPos(1,util.H-1)
+    term.setCursorPos(1,util.H(term)-1)
     util.SetTextColor(term, colors.yellow)
     if copying then
         term.write("Copying '"..clipboard.."'")
@@ -206,7 +209,7 @@ local function drawMain()
         term.write("Cutting '"..clipboard.."'")
     end
 
-    term.setCursorPos(1,util.H)
+    term.setCursorPos(1,util.H(term))
     util.SetTextColor(term, colors.red)
     
     if fs.isReadOnly(path) then
@@ -216,8 +219,8 @@ local function drawMain()
     --DisplayMemory to the bottomRight
     util.SetTextColor(term, colors.white)
     if fs.getFreeSpace(path) ~= nil and fs.getCapacity(path) ~= nil then
-        util.LeftWrite(term, util.W, util.H-1, "Remaining Space")
-        util.LeftWrite(term, util.W, util.H, fs.getFreeSpace(path).."/"..fs.getCapacity(path))
+        util.LeftWrite(term, util.W(term), util.H(term)-1, "Remaining Space")
+        util.LeftWrite(term, util.W(term), util.W(term), fs.getFreeSpace(path).."/"..fs.getCapacity(path))
     end
 end
 
@@ -249,7 +252,7 @@ while true do
         valid = true
         if index < (#dirs + #files) then
             index = index + 1
-            local fileAreaSize = util.H-6
+            local fileAreaSize = util.H(term)-6
             if ((index - fileScroll) > fileAreaSize - 3) and (fileScroll < (#dirs + #files - fileAreaSize + 1)) then
                 fileScroll = fileScroll + 1
             end

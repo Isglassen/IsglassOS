@@ -1,4 +1,5 @@
-local ccexpect = dofile("rom/modules/main/cc/expect.lua")
+local ccexpect = require("cc.expect")
+local util = require("util")
 local expect, field, range = ccexpect.expect, ccexpect.field, ccexpect.range
 
 local function contains(list, value)
@@ -46,7 +47,7 @@ local function resolveSettingPath(path, debug)
     return truePath
 end
 
-function FixSettings(settingsList)
+local function FixSettings(settingsList)
     expect(1, settingsList, "table")
     for settingURI, settingInfo in pairs(settingsList) do
         local ok, settingPath = pcall(resolveSettingPath, settingURI, true)
@@ -58,7 +59,7 @@ function FixSettings(settingsList)
                 util.WriteData(settingPath, settingInfo)
             elseif not containResult then
                 print("Invalid setting "..settingURI..". Set to "..tostring(settingInfo.value))
-                settingsUtil.Setting(settingPath, setting.default)
+                Setting(settingPath, setting.default)
             end
         else
             print("Invalid setting "..settingURI..". Set to "..tostring(settingInfo.value))
@@ -67,7 +68,22 @@ function FixSettings(settingsList)
     end
 end
 
-function List(path)
+local function Setting(path, value)
+    expect(1, path, "string")
+    local settingPath = resolveSettingPath(path)
+    local setting = util.ReadData(settingPath)
+    expect(2, value, "nil", unpack(setting.valid))
+    if type(value) == "number" then
+        range(value)
+    end
+    if value == nil then
+        return setting.value
+    end
+    setting.value = value
+    util.WriteData(settingPath, setting)
+end
+
+local function List(path)
     expect(1, path, "string")
     local truePath = resolveSettingPath(path)
     local files = fs.list(truePath)
@@ -84,17 +100,8 @@ function List(path)
     return categories, settings
 end
 
-function Setting(path, value)
-    expect(1, path, "string")
-    local settingPath = resolveSettingPath(path)
-    local setting = util.ReadData(settingPath)
-    expect(2, value, "nil", unpack(setting.valid))
-    if type(value) == "number" then
-        range(value)
-    end
-    if value == nil then
-        return setting.value
-    end
-    setting.value = value
-    util.WriteData(settingPath, setting)
-end
+return {
+    List = List,
+    Setting = Setting,
+    FixSettings = FixSettings
+}

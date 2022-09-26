@@ -1,0 +1,22 @@
+{
+    "Lua.diagnostics.globals": [
+        "colors",
+        "fs",
+        "term",
+        "write",
+        "sleep",
+        "http",
+        "textutils",
+        "shell",
+        "read",
+        "keys",
+        "peripheral",
+        "parallel",
+        "paintutils"
+    ],
+    "Lua.diagnostics.disable": [
+        "lowercase-global",
+        "deprecated",
+        "undefined-field"
+    ]
+}

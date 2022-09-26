@@ -1,3 +1,6 @@
+package.path = package.path..";/IsglassOsAPI/?.lua"
+local util = require("util")
+
 local debug = util.ReadData("IsglassOsData/Settings/System/Console/debugMode.txt").value
 
 local OScommands = {

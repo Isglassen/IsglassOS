@@ -1,35 +1,31 @@
+package.path = package.path..";/IsglassOsAPI/?.lua"
+local util = require("util")
+
 --Setup system information
 
 sleep(1)
 
-os.loadAPI("IsglassOsAPI/base64.lua")
-os.loadAPI("IsglassOsAPI/util.lua")
-os.loadAPI("IsglassOsAPI/settingsUtil.lua")
-util.W, util.H = term.getSize()
-util.Color = term.isColor()
-util.Speaker = peripheral.find("speaker")
-
-
-local middle = math.floor(util.H/2) + 1
+local middle = math.floor(util.H(term)/2) + 1
 term.clear()
 
-util.LeftWrite(term, util.W, util.H, "V"..util.VersionString(util.ReadData("IsglassOsData/version.txt")))
+util.LeftWrite(term, util.W(term), util.H(term), "V"..util.VersionString(util.ReadData("IsglassOsData/version.txt")))
 
 util.CenterWrite(term, middle-1," IsglassOS ")
 util.CenterWrite(term, middle+0,"[         ]")
 util.CenterWrite(term, middle+1,"Preparing start")
 
-if util.Speaker then
-    util.Speaker.playSound("entity.experience_orb.pickup", 3)
+local speaker = util.Speaker()
+if speaker then
+    speaker.playSound("entity.experience_orb.pickup", 3)
 end
 
 sleep(2)
 
 
-middle = math.floor(util.H/2) + 1
+middle = math.floor(util.H(term)/2) + 1
 term.clear()
 
-util.LeftWrite(term, util.W, util.H, "V"..util.VersionString(util.ReadData("IsglassOsData/version.txt")))
+util.LeftWrite(term, util.W(term), util.H(term), "V"..util.VersionString(util.ReadData("IsglassOsData/version.txt")))
 
 util.CenterWrite(term, middle-1," IsglassOS ")
 util.CenterWrite(term, middle+0,"[         ]")
@@ -40,8 +36,8 @@ util.SetTextColor(term, colors.white)
 
 util.CenterWrite(term, middle+1, "Updating")
 
-if util.Speaker then
-    util.Speaker.playSound("entity.experience_orb.pickup", 3)
+if speaker then
+    speaker.playSound("entity.experience_orb.pickup", 3)
 end
 
 
@@ -50,10 +46,10 @@ shell.switchTab(shell.openTab("IsglassOsSource/update.lua"))
 os.pullEvent("OSupdate")
 
 
-middle = math.floor(util.H/2) + 1
+middle = math.floor(util.H(term)/2) + 1
 term.clear()
 
-util.LeftWrite(term, util.W, util.H, "V"..util.VersionString(util.ReadData("IsglassOsData/version.txt")))
+util.LeftWrite(term, util.W(term), util.H(term), "V"..util.VersionString(util.ReadData("IsglassOsData/version.txt")))
 
 util.CenterWrite(term, middle-1," IsglassOS ")
 util.CenterWrite(term, middle+0,"[         ]")
@@ -64,17 +60,17 @@ util.SetTextColor(term, colors.white)
 
 util.CenterWrite(term, middle+1, "Starting!")
 
-if util.Speaker then
-    util.Speaker.playSound("entity.experience_orb.pickup", 3)
+if speaker then
+    speaker.playSound("entity.experience_orb.pickup", 3)
 end
 
 sleep(2)
 
 
-middle = math.floor(util.H/2) + 1
+middle = math.floor(util.H(term)/2) + 1
 term.clear()
 
-util.LeftWrite(term, util.W, util.H, "V"..util.VersionString(util.ReadData("IsglassOsData/version.txt")))
+util.LeftWrite(term, util.W(term), util.H(term), "V"..util.VersionString(util.ReadData("IsglassOsData/version.txt")))
 
 util.CenterWrite(term, middle-1," IsglassOS ")
 util.CenterWrite(term, middle+0,"[         ]")
@@ -85,8 +81,8 @@ util.SetTextColor(term, colors.white)
 
 util.CenterWrite(term, middle+1, "Starting!")
 
-if util.Speaker then
-    util.Speaker.playSound("entity.experience_orb.pickup", 3)
+if speaker then
+    speaker.playSound("entity.experience_orb.pickup", 3)
 end
 
 sleep(2)

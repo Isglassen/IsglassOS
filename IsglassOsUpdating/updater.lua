@@ -1,3 +1,7 @@
+package.path = package.path..";/IsglassOsAPI/?.lua"
+local util = require("util")
+local settingsUtil = require("settingsUtil")
+
 local tArgs = {...}
 local oldVersion = tArgs[1]
 local ownPath = tArgs[2]
@@ -28,8 +32,8 @@ deleteCopy("IsglassOsData/splash.img")
 deleteCopy("IsglassOsData/version.txt")
 
 --Fix Broken Settings
-os.loadAPI("IsglassOsAPI/settingsUtil.lua")
-os.loadAPI("IsglassOsAPI/util.lua")
+local settingUtil = require("settingsUtil")
+local util = require("util")
 settingsUtil.FixSettings(util.ReadData("IsglassOsData/Settings/backup.txt"))
 
 --IsglassOsFiles

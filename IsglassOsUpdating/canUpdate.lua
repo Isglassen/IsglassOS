@@ -1,3 +1,6 @@
+package.path = package.path..";/IsglassOsAPI/?.lua"
+local util = require("util")
+
 local tArgs = {...}
 local oldVersion = tArgs[1]
 if util.VersionCompare({ major = 0, update = 1, patch = 0, branch = "" }, oldVersion) then

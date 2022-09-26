@@ -1,5 +1,7 @@
 --Check for IsglassOS
 
+package.path = package.path..";/IsglassOsAPI/?.lua;/IsglassOsAPI/?;/IsglassOsAPI/?/init.lua"
+
 if not fs.exists("IsglassOsSource/checks.lua") then
     error("Din IsglassOS installation är felaktig")
 end
