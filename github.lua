@@ -1,4 +1,4 @@
-os.loadAPI("IsglassOsAPI/base64.lua")
+local base64 = require("IsglassOsAPI.base64")
 local tArgs, gUser, gAuth, gRepo, gPath, gBranch = {...}, nil, nil, nil, "", "master"
 local usage = [[
  github <user> <repo> [name:token] [path] [remote path] [branch]

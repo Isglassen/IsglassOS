@@ -1,3 +1,4 @@
+---@diagnostic disable: need-check-nil
 term.clear()
 term.setCursorPos(1,1)
 print("Until we have our own Chat software, a version of the TomtarSkogar chat software will be used")
