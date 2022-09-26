@@ -3,18 +3,38 @@
         name = "24h Clock",
         description = "Use 24 hour time",
         value = true,
-        valid = {
-            "boolean"
-        },
+        type = "boolean"
+        rules = {},
         default = true
     },
     ["System/Console/Debug Mode"] = {
         name = "Debug Mode",
         description = "Print debug information and detailed error messages in the console",
         value = false,
-        valid = {
-            "boolean"
-        },
+        type = "boolean"
+        rules = {},
         default = false
+    },
+    ["System/Files/Default Programs"] = {
+        name = "Default Programs",
+        description = "Select the default programs for different file extensions",
+        value = {
+
+        },
+        type = "table"
+        rules = {
+            key = {
+                type = "string",
+                rules = {}
+            },
+            value = {
+                type = "string",
+                rules = {}
+            }
+        },
+        default = {
+            ["dfpwm"] = "IsglassOsFiles/Programs/simpleMusic.lua"
+            ["lua"] = ""
+        }
     }
 }

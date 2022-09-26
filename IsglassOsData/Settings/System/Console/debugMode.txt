@@ -2,8 +2,7 @@
     name = "Debug Mode",
     description = "Print debug information and detailed error messages in the console",
     value = false,
-    valid = {
-        "boolean"
-    },
+    type = "boolean"
+    rules = {},
     default = false
 }

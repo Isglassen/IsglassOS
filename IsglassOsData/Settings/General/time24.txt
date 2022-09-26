@@ -2,8 +2,7 @@
     name = "24h Clock",
     description = "Use 24 hour time",
     value = true,
-    valid = {
-        "boolean"
-    },
+    type = "boolean"
+    rules = {},
     default = true
-}
+},

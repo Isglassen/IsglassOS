@@ -1,0 +1,4 @@
+{
+    name = "Files",
+    description = "Settings for how the files system should behave"
+}

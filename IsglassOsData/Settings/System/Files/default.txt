@@ -1,0 +1,22 @@
+{
+    name = "Default Programs",
+    description = "Select the default programs for different file extensions",
+    value = {
+
+    },
+    type = "table"
+    rules = {
+        key = {
+            type = "string",
+            rules = {}
+        },
+        value = {
+            type = "string",
+            rules = {}
+        }
+    },
+    default = {
+        ["dfpwm"] = "IsglassOsFiles/Programs/simpleMusic.lua"
+        ["lua"] = ""
+    }
+}
