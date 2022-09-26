@@ -68,6 +68,21 @@ local function FixSettings(settingsList)
     end
 end
 
+local function Setting(path, value)
+    expect(1, path, "string")
+    local settingPath = resolveSettingPath(path)
+    local setting = util.ReadData(settingPath)
+    expect(2, value, "nil", unpack(setting.valid))
+    if type(value) == "number" then
+        range(value)
+    end
+    if value == nil then
+        return setting.value
+    end
+    setting.value = value
+    util.WriteData(settingPath, setting)
+end
+
 local function List(path)
     expect(1, path, "string")
     local truePath = resolveSettingPath(path)
@@ -83,21 +98,6 @@ local function List(path)
         end
     end
     return categories, settings
-end
-
-local function Setting(path, value)
-    expect(1, path, "string")
-    local settingPath = resolveSettingPath(path)
-    local setting = util.ReadData(settingPath)
-    expect(2, value, "nil", unpack(setting.valid))
-    if type(value) == "number" then
-        range(value)
-    end
-    if value == nil then
-        return setting.value
-    end
-    setting.value = value
-    util.WriteData(settingPath, setting)
 end
 
 return {

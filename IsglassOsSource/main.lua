@@ -31,7 +31,7 @@ term.clear()
 local function updateTime()
     --Update time
     util.LeftWrite(term, util.W(term), util.H(term)-1, "Day "..os.day())
-    util.LeftWrite(term, util.W(term), util.W(term), textutils.formatTime(os.time(), util.ReadData("IsglassOsData/Settings/General/time24.txt").value))
+    util.LeftWrite(term, util.W(term), util.H(term), textutils.formatTime(os.time(), util.ReadData("IsglassOsData/Settings/General/time24.txt").value))
 
     --Set new timer
     return os.startTimer(0.8333)
@@ -59,8 +59,8 @@ if util.Color(term) then
     local image = paintutils.loadImage("IsglassOsData/splash.img")
     local osNameY = math.floor((util.H(term)/2) - ((#image+2)/2))+2+#image
     local osName = "IsglassOS "..util.ReadData("IsglassOsData/version.txt").major
-    paintutils.drawImage(image, math.floor((util.W/2) - (#(image[1])/2)), math.floor((util.H(term)/2) - ((#image+2)/2))+1)
-    term.setCursorPos(math.floor((util.W/2) - (osName:len()/2)), osNameY)
+    paintutils.drawImage(image, math.floor((util.W(term)/2) - (#(image[1])/2)), math.floor((util.H(term)/2) - ((#image+2)/2))+1)
+    term.setCursorPos(math.floor((util.W(term)/2) - (osName:len()/2)), osNameY)
     term.write(osName)
 end
 
